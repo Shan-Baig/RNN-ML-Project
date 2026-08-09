@@ -4,7 +4,6 @@ from rnn import RNN
 import numpy as np
 from sklearn.metrics import mean_squared_error as MSE
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 
 
 class Model:
@@ -22,8 +21,6 @@ class Model:
                         batch_size=self.batch_size, seq_length=self.seq_length)
         p.preprocess_data()
         # Initializing the rnn model
-        self.train_dates = p.dates_train.iloc[:, 0]
-        self.test_dates = p.dates_train.iloc[:, 0]
         self.X_train = p.X_train_batches  # shape: (num_batches, batch_size, seq_length, num_features)
         self.y_train = p.y_train_batches  # shape: (num_batches, batch_size, 1)
         self.model = RNN(X=self.X_train, y=self.y_train, num_neurons=self.num_neurons, seq_length=self.seq_length,
@@ -49,10 +46,8 @@ class Model:
 
     def test(self):
         y_model_test = np.array(self.model.test(self.X_test)).flatten()
-        plt.plot(self.test_dates[0:2110][0::10], np.array(self.y_test).flatten()[0:2110][0::10], label='True')
-        plt.plot(self.test_dates[0:2110][0::10], np.array(y_model_test).flatten(), label='Model')
-        plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(10))
-        plt.xticks(rotation=45)
+        plt.plot(range(len(y_model_test)), np.array(self.y_test).flatten()[0:2110][0::10], label='True')
+        plt.plot(range(len(y_model_test)), np.array(y_model_test).flatten(), label='Model')
         plt.title("Test Data")
         plt.legend()
         plt.show()
