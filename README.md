@@ -30,15 +30,6 @@ python preprocess.py
 python model.py
 ```
 
-## Results
-
-<!-- Fill in: e.g. final loss/RMSE, a plot of predicted vs. actual prices, or a short note on what worked/didn't -->
-_Add a summary of model performance here — a loss curve or predicted-vs-actual chart makes this much more compelling to a reader._
-
-## What I'd Improve Next
-
-<!-- e.g. add attention mechanism, try LSTM/GRU variants, expand to multiple tickers, add train/val/test split details -->
-
 ## References
 
 - [Recurrent Neural Networks (RNNs) — Towards Data Science](https://towardsdatascience.com/recurrent-neural-networks-rnns-3f06d7653a85)
